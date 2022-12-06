@@ -1,0 +1,15 @@
+services:
+  editor:
+    build: .
+    # command: python -c "import tensorflow as tf;tf.test.gpu_device_name()"
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/tf/code
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: "nvidia"
+              count: 1
+              capabilities: [gpu]
